@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends './base.html' %}
+{% block content %}
+    <div class="row">
+        {% for event in event_list %}
+            <div class="col-md-6" style="padding-top:100px">
+                <img src="{{ event.image }}">
+            </div>
+            <div class="col-md-6" style="padding-top:100px">
+                {{ event.title }}
+            </div>
+            {% endfor %}
+    </div>
+{% endblock %}

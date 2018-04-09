@@ -1,0 +1,11 @@
+<h1>list tasks</h1>
+    <ul>
+    {% for task in task_list %}
+    <li>
+    <h4>Usuario:{{ task.user }}, Name: {{task.name}} , Description:{{ task.description }}, priority{{ task.priority }}, finished:{{ task.finished }}id {{ task.id }}, Created{{ task.created }}</h4>
+    <label style="color:green">Edit</label><a href="{% url 'task_update' pk=task.pk %}"><input type="button" name="Edit"></a> <label style="color:red">Delete</label><a href="{% url 'task_delete' pk=task.pk %}"><input type="button" name="Edit"></a>
+    </li>
+    {% endfor %}
+    </ul>
+    <label style="color:blue">Create new task</label><a href="{% url 'new_task' %}"><input type="button" ></a>
+

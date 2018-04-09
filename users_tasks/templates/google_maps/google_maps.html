@@ -1,0 +1,7 @@
+    <form method="post">
+        {% csrf_token %}
+        {{form.media}}
+        {{form}}
+        <button type="submit" name="Events Selected" class="btn-submit btn btn-primary
+          float-right">Submit</button>
+    </form>
