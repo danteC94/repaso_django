@@ -6,6 +6,7 @@ decorator==4.3.0
 dj-database-url==0.5.0
 Django==1.11
 django-google-maps==0.10.1
+django-map-widgets==0.1.9
 enum34==1.1.6
 eventbrite==3.3.3
 gunicorn==19.7.1
@@ -35,3 +36,4 @@ traitlets==4.3.2
 urllib3==1.22
 wcwidth==0.1.7
 whitenoise==3.3.1
+psycopg2==2.7.2

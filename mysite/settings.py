@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 from django.core.exceptions import ImproperlyConfigured
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,11 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'np@&et79m)omdb^fx*@7(zt$@i9ktek**ain)txcqz-t6y8jr+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    '.herokuapp.com',
 ]
 
 
@@ -111,10 +113,15 @@ SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'repasodjango',
+        'USER': 'name',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
 
 def get_env_variable(var_name):
     try:
@@ -145,7 +152,7 @@ SOCIAL_AUTH_EVENTBRITE_KEY = get_env_variable('SOCIAL_AUTH_EVENTBRITE_KEY')
 SOCIAL_AUTH_EVENTBRITE_SECRET = get_env_variable(
     'SOCIAL_AUTH_EVENTBRITE_SECRET',
 )
-GOOGLE_MAPS_API_KEY = 'AIzaSyBiHh1Nhlbb9yAThA-DlNQ0-tvooIcdo-0'
+GOOGLE_MAPS_API_KEY = get_env_variable('GOOGLE_MAPS_API_KEY')
 # LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/list_task'
 
 # MAP_WIDGETS = {
@@ -176,3 +183,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
